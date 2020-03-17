@@ -5,7 +5,7 @@ This is the project repository for Group 12 in STAT547M in the University of Bri
 Margot Chen, Qi Yang
 
 ## Links to the Final Report
-Here are the links to [.html](https://stat547-ubc-2019-20.github.io/group_12_qiyangqd_xiaoyuanf/docs/finalreport.html), [.pdf](https://stat547-ubc-2019-20.github.io/group_12_qiyangqd_xiaoyuanf/docs/finalreport.pdf) and [.md](https://github.com/STAT547-UBC-2019-20/group_12_qiyangqd_xiaoyuanf/blob/master/docs/finalreport.md) version of the final report.
+Here are links to [.html](https://stat547-ubc-2019-20.github.io/group_12_qiyangqd_xiaoyuanf/docs/finalreport.html), [.pdf](https://stat547-ubc-2019-20.github.io/group_12_qiyangqd_xiaoyuanf/docs/finalreport.pdf) and [.md](https://github.com/STAT547-UBC-2019-20/group_12_qiyangqd_xiaoyuanf/blob/master/docs/finalreport.md) version of the final report.
 
 ## Introduction 
 1. Project Interest    
