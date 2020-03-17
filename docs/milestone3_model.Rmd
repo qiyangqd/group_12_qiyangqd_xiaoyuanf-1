@@ -1,0 +1,124 @@
+---
+title: "Milestone1"
+author: "Margot Chen, Qi Yang"
+date: "2020/02/27"
+always_allow_html: true
+output: 
+  html_document:
+    keep_md: yes
+    toc: true
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+library(corrplot)
+library(foreign)
+library(lubridate) # make it easier to parse and manipulate dates
+library(viridis) # colour blind friendly palette
+```
+
+## Beijing PM2.5   
+
+### Data Description  
+The [dataset](https://archive.ics.uci.edu/ml/datasets/Beijing+PM2.5+Data#) used in our project was obtained from University of California Irvine Machine learning Repository. It was originally uploaded by Songxi Chen in Peking University, China. This is an hourly dataset containing 1) the `PM2.5` of US Embassy in Beijing and 2) __meteorological statistics__ from Beijing Capital International Airport. The data was collected from Jan 1st, 2010 to Dec 31st, 2014. The original purpose of the dataset was to assess the effect of Chinese government’s pollution reduction plan which started from September in 2013. The dataset can be downloaded [here](https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv).     
+
+Below are the variables in the dataset:    
+
+| Variable          | Type             | Description | 
+|-------------------|------------------|-------------|
+| year              | Quantitative     |Year of data in this row|
+| month             | Quantitative     |Month of data in this row|
+| day               | Quantitative     |Day of data in this row|
+| hour              | Quantitative     |Hour of data in this row|
+| `PM2.5`           | Quantitative     |`PM2.5` concentration (ug/m^3)|
+| DEWP              | Quantitative     |Dew Point (â„ƒ)|
+| TEMP              | Quantitative     |Temperature (â„ƒ)|
+| PRES              | Quantitative     |Pressure (hPa)|
+| cbwd              | Categorical      |Combined wind direction|
+| lws               | Quantitative     |Cumulated wind speed (m/s)|
+| ls                | Quantitative     |Cumulated hours of snow|
+| lr                | Quantitative     |Cumulated hours of rain|
+
+### Dataset loading
+
+```{r}
+df<-read.csv("https://archive.ics.uci.edu/ml/machine-learning-databases/00381/PRSA_data_2010.1.1-2014.12.31.csv")
+```
+
+
+
+```{r}
+df_clean<- na.omit(df)
+head(df_clean)
+```
+
+### Dataset exploration   
+```{r}
+class(df_clean$cbwd)
+unique(df_clean$cbwd)
+```
+```{r}
+model4<-lm(pm2.5 ~ DEWP+TEMP+PRES+cbwd, data=df_clean)
+model4
+```
+```{r}
+plot(model4)
+```
+
+
+```{r}
+index=c(6:9, 11:13)
+index
+```
+
+
+```{r}
+df_corr<-cor(df_clean[index]) %>% # get the correlation of the four columns DEWP, TEMP, PRES, and PM2.5 against each other.
+  round(2)
+
+corrplot(df_corr,
+         type = "upper",
+         method = "color",
+         addCoef.col = "black",
+         diag = FALSE)
+```
+
+```{r}
+model<-lm(pm2.5 ~ DEWP + Iws, data=df_clean)
+model
+
+model2<-lm(pm2.5 ~ DEWP + TEMP + Iws, data=df_clean)
+model2
+
+```
+
+```{r}
+model3<-lm(pm2.5 ~ DEWP + TEMP + PRES + Iws, data=df_clean)
+plot(model3)
+```
+
+```{r}
+df_clean %>% modelr::data_grid(DEWP)
+```
+
+
+```{r}
+plot(model)
+```
+
+```{r}
+library(DAAG)
+cv.lm(df_clean, model, m=3) 
+```
+
+```{r}
+cv.lm(df_clean, model2, m=3) 
+```
+
+```{r}
+cv.lm(df_clean, model4, m=3) 
+```
+
+
+ings of the Royal Society A, 471, 20150257.
