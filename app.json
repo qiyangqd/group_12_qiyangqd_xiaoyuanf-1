@@ -1,0 +1,9 @@
+{
+  "name": "Beijing PM2.5 Dashboard",
+  "description": "This app allows users to explore the Beijing PM2.5 dataset from 2011 to 2014. Users can obtain an overview of temporal distribution of PM2.5 concentration, explore how daily PM2.5 concentration changes across time, and how weather conditions are related to PM2.5 concentration.",
+  "keywords": [
+    "heroku",
+    "R deployment",
+    "Dash R"
+],
+}

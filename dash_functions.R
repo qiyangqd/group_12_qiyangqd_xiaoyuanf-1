@@ -14,11 +14,11 @@ make_heatmap <- function(checklistValue=2013){
     ggplot(aes(day,hour,fill=pm2.5))+
     geom_tile(color= "white",size=0.1) +
     # Sets the order of colours in the scale reverse
-    scale_fill_viridis(name="Hourly PM2.5 concentration", direction = -1)+ 
+    scale_fill_viridis(name="Hourly PM2.5 </br></br>concentration", direction = -1)+ 
     facet_grid(year~month)+
     scale_y_continuous(trans = "reverse", breaks = unique(df$hour))+
     scale_x_continuous(breaks =c(1,10,20,31))+
-    theme_minimal(base_size = 8)+
+    theme_minimal(base_size = 11)+
     labs(x="Day", y="Hour")+
     ggtitle(paste0('Hourly PM2.5 in year ', 
                    #checklistValue is a list. need to unlist and turn the vector in to string
@@ -57,7 +57,7 @@ make_line_graph <- function(value=list(14975, 16071)){
     labs(x = "Time",
          y = "PM2.5 concentration",
          title = "Changes in PM2.5 concentration across time") +
-    theme_classic() +
+    theme_bw(14) +
     # change the range of date on x axis
     scale_x_date(date_labels = "%Y-%m-%d", limits = as.Date(c(date1,date2)))
   # add a vertical line showing the time when Chinese overnment launched the plan to control pm2.5
@@ -83,7 +83,8 @@ make_scatter <- function(xaxis="TEMP"){
     ggplot(aes(x=!!sym(xaxis), y=pm2.5))+
     geom_point(alpha=0.5)+
     facet_wrap(~cbwd)+
-    theme_bw()+
+    theme_bw(14)+
+    theme(plot.margin = unit(c(1, 1, 1, 1), "cm"))+
     labs(x = factor_xaxis$label[which(factor_xaxis$value == xaxis)], 
          y = "PM2.5")+
     ggtitle(paste0('The correlation between ', factor_xaxis$label[which(factor_xaxis$value == xaxis)], ' and PM2.5 concentration in four wind directions'))
