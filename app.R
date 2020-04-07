@@ -25,8 +25,8 @@ df <- read.csv(here("data", "raw_data.csv"))
 df_clean_sample <- sample_n(df_clean, 5000)
 
 # source
-source(here("scripts/dash_functions.R"))
-source(here("scripts/dash_components.R"))
+source(here("dash_functions.R"))
+source(here("dash_components.R"))
 
 
 

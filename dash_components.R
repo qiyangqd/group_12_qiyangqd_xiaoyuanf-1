@@ -136,7 +136,7 @@ overview <- htmlDiv(
   className = "pretty_container",
   list(htmlH2("Overview"),
        dccMarkdown('
-                   In the heatmap below, each big column represents a month (values at the top) composed of days (values at the bottom). The concentration of PM2.5 of each hour (values on the left) is represented by a color ranging from yellow (low concentration) to dark blue (high concentration) according to the legend. The value on the right indicates the year(s) that users select.
+                   In the heatmap below, each big column represents a month (values at the top) composed of days (values at the bottom). The concentration of PM2.5 of each hour (values on the left) is represented by a color ranging from yellow (low concentration) to dark blue (high concentration) according to the legend. The value on the right indicates the year(s) that you select.
                    '),
        div_checklist,
        overview_heatmap
@@ -162,7 +162,7 @@ factors <- htmlDiv(
   className = "pretty_container",
   list(htmlH2("How did weather factors relate to PM2.5?"),
        dccMarkdown('
-                   In the scatter plots below, one can see the corrleation between a weather factor that he is interested in and PM2.5 concentration at four different wind directions. 
+                   In the scatter plots below, you can see the corrleation between a weather factor that you pick and PM2.5 concentration at four different wind directions. 
                    
                    '),
        div_radio,
